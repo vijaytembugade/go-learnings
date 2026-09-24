@@ -2,13 +2,31 @@ package main
 
 import (
 	"fmt"
-	"math"
-	"math/rand"
 )
 
+func add(x int, y int) int {
+	return x + y
+}
+
+func returnWithSquare(value int) (int, int) {
+	return value, value * value
+}
+
+func swap(x string, y string) (string, string) {
+	return y, x
+}
+
 func main() {
-	fmt.Println("My favorite number is", rand.Intn(12))
-	fmt.Println("My favorite number is", rand.Intn(90))
-	fmt.Println("My favorite number is", math.Pi)
-	fmt.Println("My favorite number is", math.Sqrt(2))
+	sum := add(3, 34)
+	fmt.Println(sum)
+
+	num, square := returnWithSquare(12)
+	fmt.Println(num, square)
+	fmt.Println(returnWithSquare(3))
+	fmt.Println(returnWithSquare(89))
+	fmt.Println(returnWithSquare(11))
+
+	second, first := swap("hello", "world")
+	fmt.Println(second, first)
+
 }
