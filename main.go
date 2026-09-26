@@ -4,17 +4,30 @@ import (
 	"fmt"
 )
 
-var var1, var2, sum int // in go variable is always initized with 0 state.
-var isCorrect bool      // boolen is initilised with false value
+/*
+	Type of datatypes in GO
+	Basic Type:  Number, string, bool
+	Aggregate Type : Array, Struct
+	Refrence Type : Pointers, Slices, functions , Channel, Maps
+	Interfaces
+
+
+*/
+
+// basic data types
+var (
+	ToBe      bool   = false
+	MaxInt    uint64 = 1<<64 - 1
+	integer8  int8   = 21
+	integer32 int32  = 238879827
+	interger  int    = 134989839489238984
+	str       string = "hello"
+)
 
 func main() {
-	i := 0 // this type of declaration only valid inside a function
-	fmt.Println(isCorrect)
-	fmt.Println(var2, i)
-
-	var j = 18
-	fmt.Println(j)
-
-	var k string = "people"
-	fmt.Println(k)
+	fmt.Printf("Type: %T Value: %v\n", ToBe, ToBe)
+	fmt.Printf("Type: %T Value: %v\n", MaxInt, MaxInt)
+	fmt.Printf("Type: %T Value: %v\n", integer32, integer32)
+	fmt.Printf("Type: %T Value: %v\n", interger, interger)
+	fmt.Printf("Type: %T Value: %v\n", str, str)
 }
