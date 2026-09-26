@@ -1,64 +1,57 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-// go only have for loop
+/*
+defer in go
+defer push the evalution into a stack.
+after function returned, go takes out stack defer expesions and evaluate it
+
+WhY do we need defer ???
+1.  if code throws an error or it panics, in that cases we need to ecute few things
+which will execute a code logic, or things, we can use defer there so that we get to finish few started things
+eg. If weopen a DB connection and meanwhile something happen and we did not close the connection it will cause memory leak
+So, defer help to make those close connection work at the end of a function
+*/
 
 func main() {
-	var sum int
-	for i := 0; i < 10; i++ {
-		sum += i
-	}
-	fmt.Println(sum)
-
-	// while loop execution in go
-	for sum < 100 {
-		sum += sum
-	}
-	fmt.Println(sum)
-
-	fooBar(12)
-	fibo(10)
-	infiniteLoopUseCase(1)
+	example()
+	returenedValue := counting()
+	fmt.Println(returenedValue)
 }
 
-func fooBar(n int) {
-	for i := 1; i <= n; i++ {
-		if i%3 == 0 && i%5 == 0 {
-			fmt.Println("foobar", i)
-			continue
-		}
-		if i%3 == 0 {
-			fmt.Println("foo", i)
-			continue
-		}
-		if i%5 == 0 {
-			fmt.Println("bar", i)
-			continue
-		}
-	}
+/*
+out put of above
+world
+hello
+starting
+done
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+true
+*/
+
+func example() {
+	defer fmt.Println("hello")
+	fmt.Println("world") // world will be printed first and the hello
 }
 
-func fibo(n int) {
-	var first = 0
-	var second = 1
-	fmt.Println(first, second)
-	for i := 0; i < n; i++ {
-		var temp = first + second
-		fmt.Println(temp)
-		first = second
-		second = temp
+func counting() bool {
+	fmt.Println("starting")
+	for i := range 10 {
+		defer fmt.Println(i)
 	}
-}
-
-func infiniteLoopUseCase(n int) {
-	for {
-		if n == 100 {
-			break
-		}
-		n = n + 1
-	}
-	fmt.Println(n)
+	// [] -> in this stack, value will be pushed like i=0 -> 0, i=1 -> 1 i.e [9,8,7,6,5,4,3,2,1]
+	// and poped out values from top of a stack.
+	// so output of print will be [9,8,7,6,5,4,3,2,1] like this
+	fmt.Println("done")
+	return true
 }
