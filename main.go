@@ -4,29 +4,17 @@ import (
 	"fmt"
 )
 
-func add(x int, y int) int {
-	return x + y
-}
-
-func returnWithSquare(value int) (int, int) {
-	return value, value * value
-}
-
-func swap(x string, y string) (string, string) {
-	return y, x
-}
+var var1, var2, sum int // in go variable is always initized with 0 state.
+var isCorrect bool      // boolen is initilised with false value
 
 func main() {
-	sum := add(3, 34)
-	fmt.Println(sum)
+	i := 0 // this type of declaration only valid inside a function
+	fmt.Println(isCorrect)
+	fmt.Println(var2, i)
 
-	num, square := returnWithSquare(12)
-	fmt.Println(num, square)
-	fmt.Println(returnWithSquare(3))
-	fmt.Println(returnWithSquare(89))
-	fmt.Println(returnWithSquare(11))
+	var j = 18
+	fmt.Println(j)
 
-	second, first := swap("hello", "world")
-	fmt.Println(second, first)
-
+	var k string = "people"
+	fmt.Println(k)
 }
