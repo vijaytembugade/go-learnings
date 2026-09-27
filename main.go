@@ -3,27 +3,43 @@ package main
 import "fmt"
 
 /*
-reference types in a go ,
-there are 5 types of reference types:
-pointers, slices, maps, functions, channels
-
-& -> gives you the address of the variable (address of operator)
-* -> gives you the value of the variable (dereferencing)
+Struct in a GO
 */
-func main() {
-	pointerExample()
+
+type Vertext struct {
+	X int
+	Y int
 }
 
-func pointerExample() {
-	i := 21
+type ContectDetails struct {
+	city     string
+	mobileNo int
+}
 
-	p := &i         // p is address of i
-	fmt.Println(p)  // print the address of i -> 0x52e0d216020
-	fmt.Println(*p) // print the value of i -> 21
+type UserData struct {
+	name           string
+	contactDetails ContectDetails
+	age            int
+}
 
-	var k int = 34
-	fmt.Println(k) // 34
-	pointerToK := &k
-	*pointerToK = 56 // it changes the value of k, because pointerToK is poiting to its value not address
-	fmt.Println(k)   // 56
+func main() {
+	var v = Vertext{2, 4}
+	fmt.Println(v) // 2,4
+
+	// we can update the struct values too
+	v.X = 45
+	fmt.Println(v) // 45,4
+
+	user := UserData{
+		name: "vijay",
+		contactDetails: ContectDetails{
+			city:     "pune",
+			mobileNo: 1234567890,
+		},
+		age: 33,
+	}
+	fmt.Println(user)
+
+	user.contactDetails.mobileNo = 273874982379
+	fmt.Println(user)
 }
