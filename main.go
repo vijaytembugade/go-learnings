@@ -1,19 +1,38 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+/*
+Append in slice
+
+-> everytime append operation execute and length and capacity is not enough, the slice will be copied to a
+new memory location with double the capacity.
+-> with help of make we can preassign the values of capacity if we know as third parameter, otherwise it will execute as per pattern
+*/
 
 func main() {
-	a := make([]int, 5)
-	printSlice("a", a)
+	s := make([]int, 0)
+	printSlice("s", s)
 
-	b := make([]int, 0, 5)
-	printSlice("b", b)
+	s = append(s, 1)
+	printSlice("s", s)
 
-	c := b[:2]
-	printSlice("c", c)
+	s = append(s, 2)
+	printSlice("s", s)
 
-	d := c[2:5]
-	printSlice("d", d)
+	s = append(s, 4)
+	s = append(s, 6)
+	s = append(s, 8)
+	printSlice("s", s)
+
+	for i := 0; i < 300; i++ {
+		s = append(s, i*i)
+	}
+
+	printSlice("s", s)
+
 }
 
 func printSlice(s string, x []int) {
