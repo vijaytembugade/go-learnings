@@ -3,50 +3,38 @@ package main
 import "fmt"
 
 /*
-Struct and pointer are being used for refrencing purpose
+Arrays in go
+
+In Go , size of array is part of array
+eg. var a [2]string
 */
 
-type ContectDetails struct {
-	city     string
-	mobileNo int
-}
-
-type UserData struct {
-	name           string
-	contactDetails ContectDetails
-	age            int
+type User struct {
+	name string
+	age  int
 }
 
 func main() {
+	var a [3]string
+	a[0] = "hello"
+	a[1] = "world"
+	a[2] = "damn"
 
-	user := UserData{
-		name: "vijay",
-		contactDetails: ContectDetails{
-			city:     "pune",
-			mobileNo: 1234567890,
-		},
-		age: 33,
-	}
-	fmt.Println(user)
+	fmt.Println(a)
 
-	p := &user
-	fmt.Println(p)
-	p.name = "Vijay T"
-	p.contactDetails.mobileNo = 98239
+	str := [3]string{"jivan", "saral", "hai"}
+	fmt.Println(str)
 
-	fmt.Println(user)
+	var primes = [4]int{2, 3, 5, 7}
+	fmt.Println(primes)
 
-	if &p.contactDetails == &user.contactDetails {
-		fmt.Println(&p.contactDetails)
-	}
+	var users = [2]User{{
+		name: "some",
+		age:  23,
+	}, {
+		age:  24,
+		name: "jwepr",
+	}}
 
-	i := 1
-	k := &i
-	fmt.Println(*k)
-
+	fmt.Println(users)
 }
-
-/*
-pointer to a struct → p.field (auto-deref)
-pointer to a plain value (int, string, etc.) → *k
-*/
