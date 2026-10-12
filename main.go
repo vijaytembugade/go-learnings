@@ -3,58 +3,44 @@ package main
 import "fmt"
 
 /*
-	map is a collection of key-value pairs
-	key is unique and value is not unique
-	value can be of any type
-
-	How is is different from struct?
-	1. map is a collection of key-value pairs
-	2. struct is a collection of fields / statically typed
+Struct and a methods
 */
 
-type Address struct {
-	city    string
-	pincode int
+type Person struct {
+	firstName string
+	lastName  string
+	length    int
 }
 
-type User struct {
-	name    string
-	age     int
-	address Address
+// Following is a method attached to a struct
+// Following is a value receiver
+func (person Person) getFullName() string {
+	return person.firstName + " " + person.lastName
+}
+
+// pointer reciever
+// Pointer reciever updates the values in main struct
+func (person *Person) AddAge() {
+	person.length = len(person.firstName + person.lastName)
 }
 
 func main() {
-	var user = make(map[int]User)
-	fmt.Println(user)
-
-	for i := 0; i < 10; i++ {
-		user[i] = User{
-			name: "Vijay",
-			age:  28 * i,
-			address: Address{
-				city:    "pune",
-				pincode: 411014,
-			},
-		}
+	var person = Person{
+		firstName: "vijay",
+		lastName:  "tembugade",
 	}
 
-	var address = map[string]Address{
-		"pune": {city: "pune"},
-	}
-
-	city, ok := address["pune"]
-	if ok && city.pincode != 0 {
-		fmt.Println("pincode present:", city.pincode)
-	} else {
-		fmt.Println("pincode not present")
-	}
-
-	fmt.Println(user)
-	fmt.Println(address)
-	fmt.Println(city, ok)
-
-	for key, value := range user {
-		fmt.Println(key, value)
-	}
-
+	fmt.Println(person.getFullName())
+	person.AddAge()
+	fmt.Println(person)
 }
+
+/**
+when to pointer reciever
+ -  mutation to be reflected on original instance
+ - If it is very large struct
+
+
+ Good practise:  If you make on receiver pointer, then make all all receiver pointer
+
+*/
