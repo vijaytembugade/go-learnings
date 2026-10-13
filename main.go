@@ -3,44 +3,45 @@ package main
 import "fmt"
 
 /*
-Struct and a methods
+Interfaces are named collections of method signatures.
+
+A struct can implement an interface by implementing all the methods in the interface.
+
 */
 
-type Person struct {
-	firstName string
-	lastName  string
-	length    int
+// Interface Definition
+type Animal interface {
+	Speak() string
 }
 
-// Following is a method attached to a struct
-// Following is a value receiver
-func (person Person) getFullName() string {
-	return person.firstName + " " + person.lastName
+// Struct Definition
+type Dog struct {
+	Name string
 }
 
-// pointer reciever
-// Pointer reciever updates the values in main struct
-func (person *Person) AddAge() {
-	person.length = len(person.firstName + person.lastName)
+// Method Implementation
+func (d *Dog) Speak() string {
+	return "Woof, my name is " + d.Name
 }
 
 func main() {
-	var person = Person{
-		firstName: "vijay",
-		lastName:  "tembugade",
-	}
-
-	fmt.Println(person.getFullName())
-	person.AddAge()
-	fmt.Println(person)
+	var a Animal = &Dog{Name: "Rex"}
+	fmt.Println(a.Speak())
+	exampleEmptyInterface()
 }
 
-/**
-when to pointer reciever
- -  mutation to be reflected on original instance
- - If it is very large struct
+func exampleEmptyInterface() {
+	var a interface{} = 1
+	fmt.Println(a)
 
+	a = "Hello"
 
- Good practise:  If you make on receiver pointer, then make all all receiver pointer
+	fmt.Println(a)
 
-*/
+	a = true
+	fmt.Println(a)
+
+	a = 1.0
+	fmt.Println(a)
+
+}
