@@ -3,45 +3,23 @@ package main
 import "fmt"
 
 /*
-Interfaces are named collections of method signatures.
+generics are a way to write code that can be used with different types.
 
-A struct can implement an interface by implementing all the methods in the interface.
+For example, we can write a function that can be used with different types of values.
 
+We can use the type parameter T to represent the type of the value.
+
+We can use the type parameter T to represent the type of the value.
+
+We can use the type parameter T to represent the type of the value.
 */
 
-// Interface Definition
-type Animal interface {
-	Speak() string
-}
-
-// Struct Definition
-type Dog struct {
-	Name string
-}
-
-// Method Implementation
-func (d *Dog) Speak() string {
-	return "Woof, my name is " + d.Name
-}
-
 func main() {
-	var a Animal = &Dog{Name: "Rex"}
-	fmt.Println(a.Speak())
-	exampleEmptyInterface()
+	exampleGenerics(1)
+	exampleGenerics("Hello")
+	exampleGenerics(true)
 }
 
-func exampleEmptyInterface() {
-	var a interface{} = 1
-	fmt.Println(a)
-
-	a = "Hello"
-
-	fmt.Println(a)
-
-	a = true
-	fmt.Println(a)
-
-	a = 1.0
-	fmt.Println(a)
-
+func exampleGenerics[T comparable](value T) {
+	fmt.Println(value)
 }
